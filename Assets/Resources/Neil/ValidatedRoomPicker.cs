@@ -9,7 +9,7 @@ public class ValidatedRoomPicker:Room
     {
         List<GameObject> roomTHatMeetConstraints = new List<GameObject>();
         foreach (GameObject room in roomChoices) {
-            ValidatedRoom validatedRoom = room.GetComponent<ValidatedRoom>();
+            ValidatedRoomNeil validatedRoom = room.GetComponent<ValidatedRoomNeil>();
             if (validatedRoom.meetsConstraint(requiredExits))
                 roomTHatMeetConstraints.Add(validatedRoom.gameObject);
         }
