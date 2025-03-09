@@ -7,11 +7,13 @@ using UnityEngine;
 //
 public class Room : MonoBehaviour {
 
+	protected int[,] indexGrid = new int[LevelGenerator.ROOM_WIDTH, LevelGenerator.ROOM_HEIGHT];
 
 	// This is the function used by the level generator to generate the whole room. 
 	// It makes use of the "createRoom" and "fillRoom" functions to decide what sort of room to create and also how to fill it
 	public static Room generateRoom(GameObject roomPrefab, LevelGenerator ourGenerator, int roomX, int roomY, ExitConstraint requiredExits) {
 		Room newRoom = roomPrefab.GetComponent<Room>().createRoom(requiredExits);
+
 		float totalRoomWidth = Tile.TILE_SIZE*LevelGenerator.ROOM_WIDTH;
 		float totalRoomHeight = Tile.TILE_SIZE*LevelGenerator.ROOM_HEIGHT;
 		if (GameManager.gameMode == GameManager.GameMode.SingleRoom) {
@@ -26,7 +28,7 @@ public class Room : MonoBehaviour {
 		
 		newRoom.roomGridX = roomX;
 		newRoom.roomGridY = roomY;
-	   
+		
 		newRoom.fillRoom(ourGenerator, requiredExits);
 
 		return newRoom;	
@@ -64,38 +66,48 @@ public class Room : MonoBehaviour {
 		return roomObj.GetComponent<Room>();
 	}
 
+	public bool IsEmpty(Vector2Int node)
+    {
+		return indexGrid[node.x, node.y] == 0;
+    }
+
+	public void LoadData()
+    {
+		string initialGridString = designedRoomFile.text;
+		string[] rows = initialGridString.Trim().Split('\n');
+		int width = rows[0].Trim().Split(',').Length;
+		int height = rows.Length;
+		if (height != LevelGenerator.ROOM_HEIGHT)
+		{
+			throw new UnityException(string.Format("Error in room by {0}. Wrong height, Expected: {1}, Got: {2}", roomAuthor, LevelGenerator.ROOM_HEIGHT, height));
+		}
+		if (width != LevelGenerator.ROOM_WIDTH)
+		{
+			throw new UnityException(string.Format("Error in room by {0}. Wrong width, Expected: {1}, Got: {2}", roomAuthor, LevelGenerator.ROOM_WIDTH, width));
+		}
+
+		for (int r = 0; r < height; r++)
+		{
+			string row = rows[height - r - 1];
+			string[] cols = row.Trim().Split(',');
+			for (int c = 0; c < width; c++)
+			{
+				indexGrid[c, r] = int.Parse(cols[c]);
+			}
+		}
+
+	}
+
 	// The fillRoom function is the one you'll need to override to fill your rooms.
 	// It takes the LevelGenerator as a parameter so you have access to more global prefabs (like walls)
 	// Additionaly, it takes an array of exits that need to exist (your room will have required exits if it's on the critical path).
 	// For an exit to "exist", there can't be a wall in the center part of that edge of the room.
 
 	// This implementation pulls a designed room out of a text file.
-    public virtual void fillRoom(LevelGenerator ourGenerator, ExitConstraint requiredExits) {
+	public virtual void fillRoom(LevelGenerator ourGenerator, ExitConstraint requiredExits) {
+		LoadData();
 
-        int[,] indexGrid;
-        string initialGridString = designedRoomFile.text;
-        string[] rows = initialGridString.Trim().Split('\n');
-        int width = rows[0].Trim().Split(',').Length;
-        int height = rows.Length;
-        if (height != LevelGenerator.ROOM_HEIGHT)
-        {
-            throw new UnityException(string.Format("Error in room by {0}. Wrong height, Expected: {1}, Got: {2}", roomAuthor, LevelGenerator.ROOM_HEIGHT, height));
-        }
-        if (width != LevelGenerator.ROOM_WIDTH)
-        {
-            throw new UnityException(string.Format("Error in room by {0}. Wrong width, Expected: {1}, Got: {2}", roomAuthor, LevelGenerator.ROOM_WIDTH, width));
-        }
-        indexGrid = new int[width, height];
-        for (int r = 0; r < height; r++)
-        {
-            string row = rows[height - r - 1];
-            string[] cols = row.Trim().Split(',');
-            for (int c = 0; c < width; c++)
-            {
-                indexGrid[c, r] = int.Parse(cols[c]);
-            }
-        }
-        for (int i = 0; i < LevelGenerator.ROOM_WIDTH; i++) {
+		for (int i = 0; i < LevelGenerator.ROOM_WIDTH; i++) {
 			for (int j = 0; j < LevelGenerator.ROOM_HEIGHT; j++) {
 				int tileIndex = indexGrid[i, j];
 				if (tileIndex == 0) {
@@ -114,37 +126,5 @@ public class Room : MonoBehaviour {
 
 
 	}
-	//int[,] indexGrid;
-	/*
-    public void LoadData()
-	{
-        string initialGridString = designedRoomFile.text;
-        string[] rows = initialGridString.Trim().Split('\n');
-        int width = rows[0].Trim().Split(',').Length;
-        int height = rows.Length;
-        if (height != LevelGenerator.ROOM_HEIGHT)
-        {
-            throw new UnityException(string.Format("Error in room by {0}. Wrong height, Expected: {1}, Got: {2}", roomAuthor, LevelGenerator.ROOM_HEIGHT, height));
-        }
-        if (width != LevelGenerator.ROOM_WIDTH)
-        {
-            throw new UnityException(string.Format("Error in room by {0}. Wrong width, Expected: {1}, Got: {2}", roomAuthor, LevelGenerator.ROOM_WIDTH, width));
-        }
-        indexGrid = new int[width, height];
-        for (int r = 0; r < height; r++)
-        {
-            string row = rows[height - r - 1];
-            string[] cols = row.Trim().Split(',');
-            for (int c = 0; c < width; c++)
-            {
-                indexGrid[c, r] = int.Parse(cols[c]);
-            }
-        }
-    }
-
-	public bool IsTraversable(Vector2Int node)
-	{
-		return indexGrid[node.x, node.y] == 0;
-	}*/
 
 }
