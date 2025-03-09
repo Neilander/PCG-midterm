@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ValidatedRoom : Room
+public class ValidatedRoomNeil : Room
 {
     public bool hasUpExit;
     public bool hasDownExit;
