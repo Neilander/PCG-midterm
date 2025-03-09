@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Tile
+  - Exit
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - TransitionSpace
+  - Player
+  - Wall
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Under Ground
+    uniqueID: 693974931
+    locked: 0
+  - name: Below Floor
+    uniqueID: 3076465537
+    locked: 0
+  - name: Floor
+    uniqueID: 2084018341
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: HandObj
+    uniqueID: 3871713243
+    locked: 0
+  - name: Air
+    uniqueID: 2272694755
+    locked: 0
+  - name: UI
+    uniqueID: 831240679
+    locked: 0
+  m_RenderingLayers:
+  - Default

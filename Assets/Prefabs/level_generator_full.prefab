@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1966462671120212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4791762480987512}
+  - component: {fileID: 114918456137113632}
+  m_Layer: 0
+  m_Name: level_generator_full
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4791762480987512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966462671120212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114918456137113632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966462671120212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cbb0b41a990c491db5a3893072ee166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startRoomPrefab: {fileID: 1335745978078546, guid: 850bb3f83990641f6a1be4624fc1e67e,
+    type: 3}
+  exitRoomPrefab: {fileID: 1335745978078546, guid: cb9529cb24460473b9be220b40230951,
+    type: 3}
+  globalTilePrefabs:
+  - {fileID: 1249101369981090, guid: ad909242602e14ab893ee3381803cc01, type: 3}
+  - {fileID: 1113547423427548, guid: 15584a55359f544b8aed48a2de6be57a, type: 3}
+  - {fileID: 1759002711901290, guid: d801de884a7664f12b41f9ccf9872d6d, type: 3}
+  - {fileID: 1097009321995878, guid: 7f119146519d742d7953341b07580643, type: 3}
+  - {fileID: 302966834154814104, guid: 6bae2b9209e7d42358ca443ed2dac0c5, type: 3}
+  - {fileID: 6677565063699646061, guid: 5655d4af53f254ab68860d36ed6b99f4, type: 3}
+  - {fileID: 4792324867138895646, guid: 842ae389943db4e58b499dd48a9bd859, type: 3}
+  - {fileID: 1937988196757320722, guid: 5bc5025a83b2b4048bad954b866d33c9, type: 3}
+  - {fileID: 4191335855549357618, guid: e6e3d019bf2e1470287d00baa2473c56, type: 3}
+  normalWallPrefab: {fileID: 1249101369981090, guid: ad909242602e14ab893ee3381803cc01,
+    type: 3}
+  verticalTransitionPrefab: {fileID: 1001502169237340, guid: 6c5451184736748caa5a052d1357c174,
+    type: 3}
+  verticalBorderWallPrefab: {fileID: 1488517227932344, guid: c7b40c3cb33ae48789ad241d46f20dac,
+    type: 3}
+  horizontalTransitionPrefab: {fileID: 1624604373729792, guid: d243dbffe99cd4ed798828debad93167,
+    type: 3}
+  horizontalBorderWallPrefab: {fileID: 1379190117789994, guid: a2a294c45ce1241ef8209f3569dda87f,
+    type: 3}
+  indestructibleWallPrefab: {fileID: 1390380352294714, guid: 3a4808064c87c487e86ba0b036d35126,
+    type: 3}
+  numXRooms: 4
+  numYRooms: 4
