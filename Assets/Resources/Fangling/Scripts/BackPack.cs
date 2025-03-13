@@ -5,23 +5,32 @@ using UnityEngine.UI;
 
 public class Backpack : Tile
 {
-    private const int MaxCapacity = 4; 
-    private List<Tile> storedItems = new List<Tile>();
-    public float pickupRadius = 1.5f; 
-    private Tile currentItem = null; 
+    private const int MaxCapacity = 4;
+    private Dictionary<int, Tile> storedItems = new Dictionary<int, Tile>(); // 使用字典存储物品
+    public float pickupRadius = 1.5f;
+    private Tile currentItem = null;
     private int currentItemIndex = -1;
 
     public Image[] itemSlots;
     public GameObject itemUI;
 
+    private bool isHoldingItem;
+    private bool isInUse;
+
+    private Tile tileHoldingUs;
+
+    public ProxyTile[] proxyTiles;
+
     public override void init()
     {
         base.init();
+        currentItem = null;
+        isHoldingItem = false;
+        isInUse = false;
         itemUI.SetActive(false);
-        addTag(TileTags.CanBeHeld); 
+        addTag(TileTags.CanBeHeld);
     }
 
-   
     public bool StoreItem(Tile item)
     {
         if (storedItems.Count >= MaxCapacity)
@@ -30,17 +39,18 @@ public class Backpack : Tile
             return false;
         }
 
-        storedItems.Add(item);
+        int emptySlot = GetFirstAvailableSlot();
+        if (emptySlot == -1) return false;
 
-        item.gameObject.SetActive(false); 
-        Debug.Log($"Item {item.name} stored in backpack.");
+        storedItems[emptySlot] = item;
+        item.gameObject.SetActive(false);
+        Debug.Log($"Item {item.name} stored in backpack at slot {emptySlot}.");
         return true;
     }
 
-    
     public Tile RetrieveItem(int index)
     {
-        if (index < 0 || index >= storedItems.Count)
+        if (!storedItems.ContainsKey(index))
         {
             Debug.Log("Invalid slot index!");
             return null;
@@ -48,27 +58,30 @@ public class Backpack : Tile
 
         Tile item = storedItems[index];
         item.gameObject.SetActive(true);
-        item.pickUp(_tileHoldingUs);
+        item.pickUp(proxyTiles[index]);
         Debug.Log($"Item {item.name} retrieved from backpack.");
         return item;
     }
 
-    
     private void StoreCurrentItem()
     {
         if (currentItem != null)
         {
-            Tile item = currentItem;
             Debug.Log($"Storing back current item: {currentItem.name}");
-            item.gameObject.SetActive(false); 
+            currentItem.gameObject.SetActive(false);
             currentItem = null;
         }
     }
 
-   
     public override void pickUp(Tile tilePickingUsUp)
     {
         base.pickUp(tilePickingUsUp);
+        tileHoldingUs = tilePickingUsUp;
+        for(int i = 0; i < MaxCapacity; i++)
+        {
+            proxyTiles[i].bodyParent = tilePickingUsUp;
+        }
+        isInUse = true;
         itemUI.SetActive(true);
         if (!hasTag(TileTags.CanBeHeld)) return;
 
@@ -86,11 +99,11 @@ public class Backpack : Tile
         _tileHoldingUs = tilePickingUsUp;
     }
 
-  
     public override void dropped(Tile tileDroppingUs)
     {
         base.dropped(tileDroppingUs);
         itemUI.SetActive(false);
+
         if (_tileHoldingUs != tileDroppingUs) return;
 
         if (_body != null)
@@ -104,7 +117,6 @@ public class Backpack : Tile
         _tileHoldingUs = null;
         Debug.Log("Backpack dropped.");
     }
-
 
     public void pickUpNearbyItem()
     {
@@ -126,21 +138,21 @@ public class Backpack : Tile
         Debug.Log("No valid item found to pick up.");
     }
 
-   
     public void dropItem()
     {
+        if (currentItemIndex == -1) return;
 
         Tile item = RetrieveItem(currentItemIndex);
         if (item != null)
         {
-            item.dropped(_tileHoldingUs);
-            storedItems.Remove(item);
+            storedItems.Remove(currentItemIndex);
+            item.dropped(proxyTiles[currentItemIndex]);
+            currentItemIndex = -1;
             currentItem = null;
             Debug.Log($"Dropped {item.name}.");
         }
     }
 
-  
     void Update()
     {
         if (_tileHoldingUs != null)
@@ -153,89 +165,40 @@ public class Backpack : Tile
             {
                 dropItem();
             }
+
         }
-        if(currentItem == null && currentItemIndex != -1)
-        {
-            storedItems.RemoveAt(currentItemIndex);
-            currentItemIndex = -1;
-            
-        }
+
         UpdateUI();
         HandleItemSwitching();
     }
 
     private void HandleItemSwitching()
     {
-        int slotToRetrieve = -1;
-
-        if (Input.GetKeyDown(KeyCode.Alpha1) && storedItems.Count >= 1)
+        for (int i = 0; i < MaxCapacity; i++)
         {
-            if(currentItemIndex == 0)
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
-                PutBackItem();
-                currentItemIndex = -1;
-                slotToRetrieve = -1;
-            }else{
-                currentItemIndex = 0;
-                slotToRetrieve = 0;
+                if (currentItemIndex == i)
+                {
+                    PutBackItem();
+                    currentItemIndex = -1;
+                }
+                else if (storedItems.ContainsKey(i))
+                {
+                    currentItemIndex = i;
+                    SwitchItem(i);
+                }
             }
-
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && storedItems.Count >= 2)
-        {
-            if (currentItemIndex == 1)
-            {
-                PutBackItem();
-                currentItemIndex = -1;
-                slotToRetrieve = -1;
-            }else{
-                currentItemIndex = 1;
-                slotToRetrieve = 1;
-            }
-
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && storedItems.Count >= 3)
-        {
-            if(currentItemIndex == 2)
-            {
-                PutBackItem();
-                currentItemIndex = -1;
-                slotToRetrieve = -1;
-            }else{
-                currentItemIndex = 2;
-                slotToRetrieve = 2;
-            }
-
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4) && storedItems.Count >= 4)
-        {
-            if(currentItemIndex == 3)
-            {
-                currentItemIndex = -1;
-                PutBackItem();
-                slotToRetrieve = -1;
-            }else{
-                currentItemIndex = 3;
-                slotToRetrieve = 3;
-            }
-        }
-
-        if (slotToRetrieve != -1)
-        {
-
-            SwitchItem(slotToRetrieve);
         }
     }
 
-   
-    private void SwitchItem( int newIndex)
+    private void SwitchItem(int newIndex)
     {
-       
         StoreCurrentItem();
-
         currentItem = RetrieveItem(newIndex);
         if (currentItem != null)
         {
+            isHoldingItem = true;
             Debug.Log($"Switched to item: {currentItem.name}");
         }
     }
@@ -245,6 +208,8 @@ public class Backpack : Tile
         if (currentItem != null)
         {
             currentItem.gameObject.SetActive(false);
+            storedItems[currentItemIndex] = currentItem;
+            isHoldingItem = false;
             currentItem = null;
         }
     }
@@ -253,7 +218,7 @@ public class Backpack : Tile
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            if (i < storedItems.Count)
+            if (storedItems.ContainsKey(i))
             {
                 itemSlots[i].sprite = storedItems[i].sprite.sprite;
             }
@@ -262,8 +227,15 @@ public class Backpack : Tile
                 itemSlots[i].sprite = null;
             }
         }
-
     }
 
-
+    private int GetFirstAvailableSlot()
+    {
+        for (int i = 0; i < MaxCapacity; i++)
+        {
+            if (!storedItems.ContainsKey(i))
+                return i;
+        }
+        return -1;
+    }
 }
