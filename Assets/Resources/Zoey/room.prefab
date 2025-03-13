@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2621877029919771183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1707943257773272810}
+  - component: {fileID: -2968516036794519263}
+  m_Layer: 0
+  m_Name: room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1707943257773272810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621877029919771183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2968516036794519263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621877029919771183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d66306fe06b6e9b40a5ad20dbee38947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomAuthor: Zoey
+  designedRoomFile: {fileID: 0}
+  localTilePrefabs:
+  - {fileID: 1781302445510578, guid: 5652ba27092cb6f49b42a1a4607f6f4a, type: 3}
+  roomGridX: 0
+  roomGridY: 0
+  roomPrefabs:
+  - {fileID: 2621877029919771183, guid: 4c904f4759ecbbe46b1d345c8d3dc58a, type: 3}
+  - {fileID: 1896788399910994, guid: 4a5177ca107b8b34b9e2ca08ff8d869f, type: 3}
+  roomNumbers: 0800000004000000
+  validatedRoomPrefabs:
+  - {fileID: 4132863616273279801, guid: f45864a9655e2a64283521260139db92, type: 3}
+  - {fileID: 4132863616273279801, guid: 9f516bac385504547b8d696f578e35f7, type: 3}
+  m_maxRoomCount: 16
+  blankRoomPref: {fileID: 4211939095749208985, guid: bf702698225f596439a2de204858ef9b,
+    type: 3}
