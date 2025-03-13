@@ -10,7 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 400666515922996648}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 4794330219237861201}
+=======
+  - component: {fileID: 6397445593135210074}
+>>>>>>> Stashed changes
 =======
   - component: {fileID: 6397445593135210074}
 >>>>>>> Stashed changes
@@ -37,7 +41,11 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!114 &4794330219237861201
+=======
+--- !u!114 &6397445593135210074
+>>>>>>> Stashed changes
 =======
 --- !u!114 &6397445593135210074
 >>>>>>> Stashed changes
@@ -76,6 +84,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   roomGridX: 0
   roomGridY: 0
