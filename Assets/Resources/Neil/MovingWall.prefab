@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 4095577871619011433}
   - component: {fileID: 6777123049110066417}
   - component: {fileID: 2218566188866589032}
+  - component: {fileID: 6447983511691868606}
   m_Layer: 10
   m_Name: MovingWall
   m_TagString: Untagged
@@ -291,9 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4336f1c2b485045398198031a49cd5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: 0
+  tags: 4
   tileName: MovingWall
-  health: 1
+  health: 10
   deathEffect: {fileID: 0}
   deathSFX: {fileID: 0}
   heldOffset: {x: 0.2, y: -0.1}
@@ -329,7 +330,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   moveDuration: 1
   newObjectPrefab: {fileID: 6677565063699646061}
-  checkInterval: 5
+  checkInterval: 3
   reverseMoveCurve:
     serializedVersion: 2
     m_Curve:
@@ -355,3 +356,30 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverseMoveDuration: 1.5
+--- !u!50 &6447983511691868606
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677565063699646061}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
