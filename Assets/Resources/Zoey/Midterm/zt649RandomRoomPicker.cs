@@ -74,8 +74,13 @@ public class zt649RandomRoomPicker : Room
         List<GameObject> roomTHatMeetConstraints = new List<GameObject>();
         foreach (GameObject room in validatedRoomPrefabs) {
             ValidatedRoomNeil validatedRoom = room.GetComponent<ValidatedRoomNeil>();
-            if (validatedRoom.meetsConstraint(requiredExits))
+            ValidatedRoom vRoom = room.GetComponent<ValidatedRoom>();
+            if (validatedRoom != null && validatedRoom.meetsConstraint(requiredExits))
                 roomTHatMeetConstraints.Add(validatedRoom.gameObject);
+            else if (vRoom != null && vRoom.meetsConstraint(requiredExits))
+            {
+                roomTHatMeetConstraints.Add(vRoom.gameObject);
+            }
         }
 
         return GlobalFuncs.randElem(roomTHatMeetConstraints);
