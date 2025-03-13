@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class CircleRoom : Room
 {
 
-    public GameObject treasurePrefab;
+    public GameObject[] treasurePrefab;
     public GameObject[] enemyPrefab;
 
 	public int minNumEnemies = 1, maxNumEnemies = 2;
@@ -276,7 +276,8 @@ public class CircleRoom : Room
     }
 
     void GenerateTreasure(){
-        Tile.spawnTile(treasurePrefab, transform, LevelGenerator.ROOM_WIDTH/2, LevelGenerator.ROOM_HEIGHT/2);
+        int n = Random.Range(0, treasurePrefab.Length);
+        Tile.spawnTile(treasurePrefab[n], transform, LevelGenerator.ROOM_WIDTH/2, LevelGenerator.ROOM_HEIGHT/2);
     }
 
 

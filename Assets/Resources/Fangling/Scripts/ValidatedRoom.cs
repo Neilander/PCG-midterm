@@ -15,6 +15,8 @@ public class ValidatedRoom : Room
     public bool hasDownRightPath;
     public bool hasLeftRightPath;
 
+    public GameObject movingWall;
+
     public bool Search(Vector2Int startingNode, Vector2Int targetNode)
     {
         List<Vector2Int> openSet = new List<Vector2Int>();
@@ -138,5 +140,48 @@ public class ValidatedRoom : Room
             return false;
 
         return true;
+    }
+
+    public override void fillRoom(LevelGenerator ourGenerator, ExitConstraint requiredExits)
+    {
+        LoadData();
+
+        for (int i = 0; i < LevelGenerator.ROOM_WIDTH; i++)
+        {
+            for (int j = 0; j < LevelGenerator.ROOM_HEIGHT; j++)
+            {
+                int tileIndex = indexGrid[i, j];
+                GameObject tileToSpawn;
+                if (tileIndex == 0)
+                {
+                    if (i == 0 || j == 0 || i == (LevelGenerator.ROOM_WIDTH - 1) || j == (LevelGenerator.ROOM_HEIGHT - 1))
+                    {
+                        if (Random.value > 0.7)
+                        {
+                            tileToSpawn = movingWall;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                        continue; // 0 is nothing.
+                }
+                else
+                {
+                    if (tileIndex < LevelGenerator.LOCAL_START_INDEX)
+                    {
+                        tileToSpawn = ourGenerator.globalTilePrefabs[tileIndex - 1];
+                    }
+                    else
+                    {
+                        int n = Random.Range(0, localTilePrefabs.Length);
+                        tileToSpawn = localTilePrefabs[n];
+                    }
+                }
+                Tile.spawnTile(tileToSpawn, transform, i, j);
+            }
+        }
     }
 }

@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4336f1c2b485045398198031a49cd5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: 1
+  tags: 0
   tileName: MovingWall
   health: 1
   deathEffect: {fileID: 0}

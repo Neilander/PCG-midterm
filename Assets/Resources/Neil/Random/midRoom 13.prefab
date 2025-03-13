@@ -70,3 +70,5 @@ MonoBehaviour:
   hasDownLeftPath: 0
   hasDownRightPath: 0
   hasLeftRightPath: 0
+  movingWall: {fileID: 6677565063699646061, guid: 5655d4af53f254ab68860d36ed6b99f4,
+    type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 34516721594270704}
   - component: {fileID: 4735949305742935802}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 2041566620864669205}
   - component: {fileID: 7340494384374314306}
   - component: {fileID: 1963088240164400045}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Chess
   m_TagString: Untagged
   m_Icon: {fileID: 0}

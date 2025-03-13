@@ -48,7 +48,6 @@ MonoBehaviour:
   designedRoomFile: {fileID: 4900000, guid: 2bf697bbdc1b7460ca2f8d09ff5f41af, type: 3}
   localTilePrefabs:
   - {fileID: 1312951893184288, guid: 786dfb6acbb9c1c43ab212fd2d62b1d1, type: 3}
-  - {fileID: 1580678788207258, guid: f9a32ecc429ff3d46a2693af0389bc84, type: 3}
   - {fileID: 9068887257775395049, guid: 0606e81fefa3948d49033adb328a7a75, type: 3}
   - {fileID: 1312951893184288, guid: e5a16b688008331478f3a157b7ba8aee, type: 3}
   - {fileID: 1312951893184288, guid: 3be87b56cc939d946874d188663b520f, type: 3}
@@ -70,3 +69,5 @@ MonoBehaviour:
   hasDownLeftPath: 0
   hasDownRightPath: 0
   hasLeftRightPath: 1
+  movingWall: {fileID: 6677565063699646061, guid: 5655d4af53f254ab68860d36ed6b99f4,
+    type: 3}
