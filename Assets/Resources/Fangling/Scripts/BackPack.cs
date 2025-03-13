@@ -101,6 +101,10 @@ public class Backpack : Tile
 
     public override void dropped(Tile tileDroppingUs)
     {
+        if(currentItem != null)
+        {
+            PutBackItem();
+        }
         base.dropped(tileDroppingUs);
         itemUI.SetActive(false);
 
@@ -115,7 +119,7 @@ public class Backpack : Tile
         addTag(TileTags.CanBeHeld);
         _tileHoldingUs.tileWereHolding = null;
         _tileHoldingUs = null;
-        Debug.Log("Backpack dropped.");
+      
     }
 
     public void pickUpNearbyItem()
@@ -129,13 +133,13 @@ public class Backpack : Tile
             {
                 if (StoreItem(item))
                 {
-                    Debug.Log($"Picked up {item.name}.");
+                    
                     return;
                 }
             }
         }
 
-        Debug.Log("No valid item found to pick up.");
+    
     }
 
     public void dropItem()
@@ -147,14 +151,20 @@ public class Backpack : Tile
         {
             storedItems.Remove(currentItemIndex);
             item.dropped(proxyTiles[currentItemIndex]);
+            item.transform.parent = tileHoldingUs.transform.parent;
             currentItemIndex = -1;
             currentItem = null;
-            Debug.Log($"Dropped {item.name}.");
+         
         }
     }
 
     void Update()
     {
+        for(int i = 0; i < MaxCapacity; i++)
+        {
+            if(_tileHoldingUs != null)
+            proxyTiles[i].aimDirection = _tileHoldingUs.aimDirection;
+        }
         if (_tileHoldingUs != null)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -165,6 +175,15 @@ public class Backpack : Tile
             {
                 dropItem();
             }
+        }
+        if(currentItem == null && currentItemIndex != -1){
+
+            if(storedItems.ContainsKey(currentItemIndex)){
+                storedItems.Remove(currentItemIndex);
+                currentItemIndex = -1;
+            }
+
+
 
         }
 
@@ -218,7 +237,7 @@ public class Backpack : Tile
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            if (storedItems.ContainsKey(i))
+            if (storedItems.ContainsKey(i) && storedItems[i] != null)
             {
                 itemSlots[i].sprite = storedItems[i].sprite.sprite;
             }
@@ -238,4 +257,9 @@ public class Backpack : Tile
         }
         return -1;
     }
+
+    public override void useAsItem(Tile tileUsingUs) {
+        if (currentItem != null)
+		currentItem.useAsItem(proxyTiles[currentItemIndex]);
+	}
 }
