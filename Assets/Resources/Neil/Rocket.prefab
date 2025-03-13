@@ -145,7 +145,7 @@ MonoBehaviour:
   heldAngle: 0
   tileWereHolding: {fileID: 0}
   aimDirection: {x: 0, y: 0}
-  moveSpeed: 15
+  moveSpeed: 25
   turnSpeed: 140
 --- !u!50 &5695953723159122722
 Rigidbody2D:
