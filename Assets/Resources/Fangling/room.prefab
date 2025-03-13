@@ -52,6 +52,7 @@ MonoBehaviour:
   treasurePrefab: {fileID: 1312951893184288, guid: e5a16b688008331478f3a157b7ba8aee,
     type: 3}
   enemyPrefab:
-  - {fileID: 1781302445510578, guid: 16b0864b865574bc4a169084f3bf8cfc, type: 3}
+  - {fileID: 1312951893184288, guid: 3be87b56cc939d946874d188663b520f, type: 3}
+  - {fileID: 1580678788207258, guid: f9a32ecc429ff3d46a2693af0389bc84, type: 3}
   minNumEnemies: 1
   maxNumEnemies: 2
