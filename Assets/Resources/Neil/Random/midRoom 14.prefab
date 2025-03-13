@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4119045933449958315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5644683156652771849}
+  - component: {fileID: 3102332637567676387}
+  m_Layer: 0
+  m_Name: midRoom 14
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5644683156652771849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4119045933449958315}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3102332637567676387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4119045933449958315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce2178671589794dbdd9c2b480621ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomAuthor: 
+  designedRoomFile: {fileID: 4900000, guid: d1baad4b51cfe48878801531afd61135, type: 3}
+  localTilePrefabs:
+  - {fileID: 1312951893184288, guid: 786dfb6acbb9c1c43ab212fd2d62b1d1, type: 3}
+  - {fileID: 1580678788207258, guid: f9a32ecc429ff3d46a2693af0389bc84, type: 3}
+  - {fileID: 9068887257775395049, guid: 0606e81fefa3948d49033adb328a7a75, type: 3}
+  - {fileID: 1312951893184288, guid: e5a16b688008331478f3a157b7ba8aee, type: 3}
+  - {fileID: 1312951893184288, guid: 3be87b56cc939d946874d188663b520f, type: 3}
+  - {fileID: 4792324867138895646, guid: 842ae389943db4e58b499dd48a9bd859, type: 3}
+  - {fileID: 302966834154814104, guid: 6bae2b9209e7d42358ca443ed2dac0c5, type: 3}
+  - {fileID: 1937988196757320722, guid: 5bc5025a83b2b4048bad954b866d33c9, type: 3}
+  - {fileID: 6677565063699646061, guid: 79a0f17281be74719a59d4e0bd5e90c2, type: 3}
+  - {fileID: 4191335855549357618, guid: e6e3d019bf2e1470287d00baa2473c56, type: 3}
+  - {fileID: 1097009321995878, guid: 7f119146519d742d7953341b07580643, type: 3}
+  roomGridX: 0
+  roomGridY: 0
+  hasUpExit: 1
+  hasDownExit: 0
+  hasLeftExit: 0
+  hasRightExit: 1
+  hasUpDownPath: 0
+  hasUpLeftPath: 0
+  hasUpRightPath: 1
+  hasDownLeftPath: 0
+  hasDownRightPath: 0
+  hasLeftRightPath: 0
