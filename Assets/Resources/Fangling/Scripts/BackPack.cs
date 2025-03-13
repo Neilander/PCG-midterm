@@ -21,6 +21,8 @@ public class Backpack : Tile
 
     public ProxyTile[] proxyTiles;
 
+    public Sprite defaultSprite;
+
     public override void init()
     {
         base.init();
@@ -243,7 +245,7 @@ public class Backpack : Tile
             }
             else
             {
-                itemSlots[i].sprite = null;
+                itemSlots[i].sprite = defaultSprite;
             }
         }
     }
